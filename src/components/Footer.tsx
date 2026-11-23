@@ -29,15 +29,15 @@ export function Footer() {
 
           {/* All 9 Section Shortcuts */}
           <div className="md:col-span-4">
-            <h2 className="font-display text-xs font-semibold uppercase tracking-wider text-slate-400">
+            <h2 className="font-display text-xs font-semibold uppercase tracking-wider text-slate-300">
               {t(UI_STRINGS.footerQuickLinks)}
             </h2>
-            <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2">
+            <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1">
               {ALL_NAV_SECTIONS.map((section) => (
                 <li key={section.id}>
                   <a
                     href={`#${section.id}`}
-                    className="text-xs text-slate-300 transition-colors hover:text-blue-400"
+                    className="inline-flex min-h-[36px] items-center text-xs text-slate-300 transition-colors hover:text-blue-400"
                   >
                     {t(section.label)}
                   </a>
@@ -48,15 +48,15 @@ export function Footer() {
 
           {/* External Links */}
           <div className="md:col-span-3">
-            <h2 className="font-display text-xs font-semibold uppercase tracking-wider text-slate-400">
+            <h2 className="font-display text-xs font-semibold uppercase tracking-wider text-slate-300">
               {t(UI_STRINGS.footerConnect)}
             </h2>
-            <div className="mt-3 flex flex-col gap-2.5">
+            <div className="mt-3 flex flex-col gap-1.5">
               <a
                 href={SOCIAL_LINKS.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs text-slate-300 transition-colors hover:text-blue-400"
+                className="inline-flex min-h-[40px] items-center gap-2 text-xs text-slate-300 transition-colors hover:text-blue-400"
               >
                 <Github className="h-4 w-4" aria-hidden="true" />
                 <span>GitHub</span>
@@ -65,7 +65,7 @@ export function Footer() {
                 href={SOCIAL_LINKS.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs text-slate-300 transition-colors hover:text-purple-400"
+                className="inline-flex min-h-[40px] items-center gap-2 text-xs text-slate-300 transition-colors hover:text-purple-400"
               >
                 <Instagram className="h-4 w-4" aria-hidden="true" />
                 <span>Instagram</span>
@@ -74,7 +74,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-slate-800/70 pt-6 text-xs text-slate-500">
+        <div className="mt-10 border-t border-slate-800/75 pt-6 text-xs text-slate-400">
           <p>{t(UI_STRINGS.footerCopyright)}</p>
         </div>
       </div>

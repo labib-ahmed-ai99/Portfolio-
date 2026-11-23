@@ -16,12 +16,17 @@
     scroll-padding-top: 5.5rem;
     background-color: var(--bg-canvas);
     color: #f1f5f9;
+    overflow-x: clip;
     font-family: "DM Sans", "Noto Sans Bengali", "Hind Siliguri", system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    overflow-x: clip;
   }
 
   html[lang="bn"] body {
     font-family: "Noto Sans Bengali", "Hind Siliguri", "DM Sans", system-ui, sans-serif;
-    line-height: 1.7;
+    line-height: 1.75;
   }
 
   h1,
@@ -32,12 +37,14 @@
     font-family: "Plus Jakarta Sans", "Hind Siliguri", "Noto Sans Bengali", system-ui, sans-serif;
   }
 
+  /* Prevent Bengali vowel signs / matras from clipping on display headings */
   html[lang="bn"] h1,
   html[lang="bn"] h2,
   html[lang="bn"] h3,
   html[lang="bn"] h4,
   html[lang="bn"] .font-display {
     font-family: "Hind Siliguri", "Noto Sans Bengali", "Plus Jakarta Sans", system-ui, sans-serif;
+    line-height: 1.35;
   }
 
   .font-mono-tabular {

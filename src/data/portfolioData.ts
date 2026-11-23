@@ -635,6 +635,14 @@ export const UI_STRINGS = {
     en: 'Contact Me',
     bn: 'যোগাযোগ করুন',
   },
+  heroFeaturedLabel: {
+    en: 'Featured Practice Focus',
+    bn: 'বর্তমান অনুশীলনের ঝলক',
+  },
+  heroFeaturedLink: {
+    en: 'View all 5 projects',
+    bn: '৫টি প্রকল্পই দেখুন',
+  },
   educationEyebrow: {
     en: '02. Education',
     bn: '০২. শিক্ষাগত যোগ্যতা',
@@ -687,6 +695,19 @@ export const UI_STRINGS = {
   statusCompleted: { en: 'Completed Practice Project', bn: 'সম্পন্ন অনুশীলন প্রকল্প' },
   statusInProgress: { en: 'In Progress · Not Yet Completed', bn: 'চলমান · এখনও সম্পূর্ণ নয়' },
   viewProjectDetails: { en: 'Inspect Details', bn: 'বিস্তারিত দেখুন' },
+  cardLearningOutcome: { en: 'Learning outcome', bn: 'শেখার ফলাফল' },
+  cardCliPlaceholderLabel: {
+    en: 'Screenshot placeholder · Python CLI script',
+    bn: 'স্ক্রিনশট প্লেসহোল্ডার · পাইথন সিএলআই',
+  },
+  cardHtmlPlaceholderLabel: {
+    en: 'Screenshot placeholder · HTML in progress',
+    bn: 'স্ক্রিনশট প্লেসহোল্ডার · চলমান এইচটিএমএল',
+  },
+  cardNoLinksYet: {
+    en: 'No public repo or demo link yet',
+    bn: 'এখনও পাবলিক রিপো বা ডেমো লিংক নেই',
+  },
   noProjectsMatch: {
     en: 'No projects match the selected filter.',
     bn: 'নির্বাচিত ফিল্টারের সাথে কোনো প্রকল্প মেলেনি।',
@@ -738,6 +759,18 @@ export const UI_STRINGS = {
   contactLead: {
     en: 'Whether you are a mentor, fellow student, or collaborator, feel free to send a message using the form or connect on GitHub and Instagram.',
     bn: 'আপনি যদি একজন পরামর্শদাতা, সহপাঠী বা সহযোগী হন, তবে ফর্মের মাধ্যমে বার্তা পাঠাতে পারেন অথবা গিটহাব ও ইনস্টাগ্রামে যুক্ত হতে পারেন।',
+  },
+  formStatusReadyFormspree: {
+    en: 'Form Service: Connected via Formspree',
+    bn: 'ফর্ম সার্ভিস: Formspree-এর মাধ্যমে সংযুক্ত',
+  },
+  formStatusReadyEmailJs: {
+    en: 'Form Service: Connected via EmailJS',
+    bn: 'ফর্ম সার্ভিস: EmailJS-এর মাধ্যমে সংযুক্ত',
+  },
+  formStatusUnconfigured: {
+    en: 'Form Service: Not Configured Yet (Validation Mode Only)',
+    bn: 'ফর্ম সার্ভিস: এখনও কনফিগার করা হয়নি (শুধুমাত্র যাচাইকরণ মোড)',
   },
   privacyNoteTitle: {
     en: 'Privacy & Form Delivery Notice',
@@ -811,3 +844,23 @@ export const UI_STRINGS = {
     bn: '© ২০২৬ লাবিব আহমেদ। শেখা ও এগিয়ে চলার সৎ প্রতিফলন হিসেবে নির্মিত।',
   },
 };
+
+export const HERO_HIGHLIGHTS: { label: LocalizedText; value: LocalizedText }[] = [
+  {
+    label: { en: 'Current Study', bn: 'বর্তমান অধ্যয়ন' },
+    value: { en: 'Grade 11 Science · HSC 2028', bn: 'একাদশ বিজ্ঞান · এইচএসসি ২০২৮' },
+  },
+  {
+    label: { en: 'SSC 2026 Result', bn: 'এসএসসি ২০২৬ ফলাফল' },
+    value: { en: 'GPA 5.00', bn: 'জিপিএ ৫.০০' },
+  },
+  {
+    label: { en: 'BDOC Math Olympiad 2026', bn: 'BDOC গণিত অলিম্পিয়াড ২০২৬' },
+    value: { en: 'Top 50', bn: 'শীর্ষ ৫০' },
+  },
+  {
+    label: { en: 'Practice Projects', bn: 'অনুশীলন প্রকল্প' },
+    value: { en: '4 Python CLI · 1 HTML', bn: '৪টি পাইথন · ১টি এইচটিএমএল' },
+  },
+];
+

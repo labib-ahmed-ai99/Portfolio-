@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { m } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
 import { ABOUT_CONTENT } from '../data/portfolioData';
 
@@ -8,7 +8,7 @@ export function AboutSection() {
   return (
     <section id="about" className="border-b border-slate-800/70 bg-[#060913] py-16 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -60,7 +60,7 @@ export function AboutSection() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

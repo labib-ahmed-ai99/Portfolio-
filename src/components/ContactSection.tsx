@@ -10,7 +10,7 @@ import {
   Send,
   ShieldCheck,
 } from 'lucide-react';
-import { motion } from 'motion/react';
+import { m } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
 import { SOCIAL_LINKS, UI_STRINGS } from '../data/portfolioData';
 
@@ -56,6 +56,12 @@ export function ContactSection() {
   );
   const isBackendConfigured = Boolean(formspreeEndpoint) || hasEmailJsConfig;
 
+  const serviceStatusText = formspreeEndpoint
+    ? t(UI_STRINGS.formStatusReadyFormspree)
+    : hasEmailJsConfig
+    ? t(UI_STRINGS.formStatusReadyEmailJs)
+    : t(UI_STRINGS.formStatusUnconfigured);
+
   const validate = (fields: FormValues): FormErrors => {
     const nextErrors: FormErrors = {};
     if (fields.name.trim().length < 2) {
@@ -75,10 +81,7 @@ export function ContactSection() {
     return nextErrors;
   };
 
-  const handleChange = (
-    field: keyof FormValues,
-    value: string
-  ) => {
+  const handleChange = (field: keyof FormValues, value: string) => {
     const updated = { ...values, [field]: value };
     setValues(updated);
     if (errors[field]) {
@@ -122,7 +125,8 @@ export function ContactSection() {
           }),
         });
 
-        if (!response.ok) {
+        const data = await response.json().catch(() => null);
+        if (!response.ok || (data && data.ok === false)) {
           throw new Error('Formspree request failed');
         }
       } else if (hasEmailJsConfig) {
@@ -164,7 +168,7 @@ export function ContactSection() {
   return (
     <section id="contact" className="bg-[#0A0F1E] py-16 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
@@ -202,11 +206,11 @@ export function ContactSection() {
                     type="button"
                     onClick={() => setShowSetupGuide((prev) => !prev)}
                     aria-expanded={showSetupGuide}
-                    className="flex w-full items-center justify-between text-left text-xs font-semibold text-blue-400 hover:text-blue-300"
+                    className="flex min-h-[40px] w-full items-center justify-between text-left text-xs font-semibold text-blue-400 hover:text-blue-300"
                   >
                     <span>{t(UI_STRINGS.setupGuideToggle)}</span>
                     <ChevronDown
-                      className={`h-4 w-4 transition-transform duration-150 ${
+                      className={`h-4 w-4 shrink-0 transition-transform duration-150 ${
                         showSetupGuide ? 'rotate-180' : ''
                       }`}
                       aria-hidden="true"
@@ -217,8 +221,8 @@ export function ContactSection() {
                     <div className="mt-3 space-y-2.5 text-xs leading-relaxed text-slate-300">
                       <p>
                         {language === 'en'
-                          ? '1. Formspree (easiest): Create a free form at formspree.io pointing to your private email, then set VITE_FORMSPREE_ENDPOINT in your .env file or hosting dashboard.'
-                          : '১. Formspree (সবচেয়ে সহজ): formspree.io-তে আপনার ব্যক্তিগত ইমেইল যুক্ত করে একটি ফর্ম তৈরি করুন এবং .env বা হোস্টিং ড্যাশবোর্ডে VITE_FORMSPREE_ENDPOINT যোগ করুন।'}
+                          ? '1. Formspree (recommended): Create a form at formspree.io linked to your private email, then set VITE_FORMSPREE_ENDPOINT in your .env file or hosting dashboard.'
+                          : '১. Formspree (প্রস্তাবিত): formspree.io-তে আপনার ব্যক্তিগত ইমেইল যুক্ত করে একটি ফর্ম তৈরি করুন এবং .env বা হোস্টিং ড্যাশবোর্ডে VITE_FORMSPREE_ENDPOINT যোগ করুন।'}
                       </p>
                       <p>
                         {language === 'en'
@@ -239,26 +243,26 @@ export function ContactSection() {
                     href={SOCIAL_LINKS.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex min-h-[44px] items-center justify-between rounded-xl border border-slate-800 bg-[#060913]/85 px-4 py-3 text-sm font-medium text-slate-200 transition-colors hover:border-blue-500/50 hover:text-white"
+                    className="flex min-h-[46px] items-center justify-between gap-3 rounded-xl border border-slate-800 bg-[#060913]/85 px-4 py-3 text-sm font-medium text-slate-200 transition-colors hover:border-blue-500/50 hover:text-white"
                   >
-                    <span className="flex items-center gap-3">
-                      <Github className="h-4 w-4 text-blue-400" aria-hidden="true" />
-                      <span>GitHub · labib-ahmed-ai99</span>
+                    <span className="flex min-w-0 items-center gap-3">
+                      <Github className="h-4 w-4 shrink-0 text-blue-400" aria-hidden="true" />
+                      <span className="truncate">GitHub · labib-ahmed-ai99</span>
                     </span>
-                    <ExternalLink className="h-4 w-4 text-slate-500" aria-hidden="true" />
+                    <ExternalLink className="h-4 w-4 shrink-0 text-slate-400" aria-hidden="true" />
                   </a>
 
                   <a
                     href={SOCIAL_LINKS.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex min-h-[44px] items-center justify-between rounded-xl border border-slate-800 bg-[#060913]/85 px-4 py-3 text-sm font-medium text-slate-200 transition-colors hover:border-purple-500/50 hover:text-white"
+                    className="flex min-h-[46px] items-center justify-between gap-3 rounded-xl border border-slate-800 bg-[#060913]/85 px-4 py-3 text-sm font-medium text-slate-200 transition-colors hover:border-purple-500/50 hover:text-white"
                   >
-                    <span className="flex items-center gap-3">
-                      <Instagram className="h-4 w-4 text-purple-400" aria-hidden="true" />
-                      <span>Instagram · @labibahmed909</span>
+                    <span className="flex min-w-0 items-center gap-3">
+                      <Instagram className="h-4 w-4 shrink-0 text-purple-400" aria-hidden="true" />
+                      <span className="truncate">Instagram · @labibahmed909</span>
                     </span>
-                    <ExternalLink className="h-4 w-4 text-slate-500" aria-hidden="true" />
+                    <ExternalLink className="h-4 w-4 shrink-0 text-slate-400" aria-hidden="true" />
                   </a>
                 </div>
               </div>
@@ -271,6 +275,23 @@ export function ContactSection() {
                 onSubmit={handleSubmit}
                 className="rounded-2xl border border-slate-800/85 bg-[#0B1120] p-6 sm:p-8"
               >
+                {/* Upfront Configuration Indicator */}
+                <div className="mb-6 flex items-center gap-2 border-b border-slate-800/80 pb-4 text-xs">
+                  <Info
+                    className={`h-4 w-4 shrink-0 ${
+                      isBackendConfigured ? 'text-emerald-400' : 'text-blue-400'
+                    }`}
+                    aria-hidden="true"
+                  />
+                  <span
+                    className={
+                      isBackendConfigured ? 'font-medium text-emerald-300' : 'text-slate-300'
+                    }
+                  >
+                    {serviceStatusText}
+                  </span>
+                </div>
+
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                   <div>
                     <label
@@ -283,12 +304,13 @@ export function ContactSection() {
                       id="contact-name"
                       name="name"
                       type="text"
+                      autoComplete="name"
                       value={values.name}
                       onChange={(e) => handleChange('name', e.target.value)}
                       placeholder={t(UI_STRINGS.formNamePlaceholder)}
                       aria-invalid={Boolean(errors.name)}
                       aria-describedby={errors.name ? 'contact-name-error' : undefined}
-                      className="mt-2 w-full rounded-lg border border-slate-800 bg-[#060913] px-3.5 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 focus:border-blue-500 focus:outline-none"
+                      className="mt-2 min-h-[44px] w-full rounded-lg border border-slate-800 bg-[#060913] px-3.5 py-2.5 text-sm text-slate-100 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none"
                     />
                     {errors.name && (
                       <p id="contact-name-error" className="mt-1.5 text-xs text-rose-400">
@@ -308,12 +330,13 @@ export function ContactSection() {
                       id="contact-email"
                       name="email"
                       type="email"
+                      autoComplete="email"
                       value={values.email}
                       onChange={(e) => handleChange('email', e.target.value)}
                       placeholder={t(UI_STRINGS.formEmailPlaceholder)}
                       aria-invalid={Boolean(errors.email)}
                       aria-describedby={errors.email ? 'contact-email-error' : undefined}
-                      className="mt-2 w-full rounded-lg border border-slate-800 bg-[#060913] px-3.5 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 focus:border-blue-500 focus:outline-none"
+                      className="mt-2 min-h-[44px] w-full rounded-lg border border-slate-800 bg-[#060913] px-3.5 py-2.5 text-sm text-slate-100 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none"
                     />
                     {errors.email && (
                       <p id="contact-email-error" className="mt-1.5 text-xs text-rose-400">
@@ -339,7 +362,7 @@ export function ContactSection() {
                     placeholder={t(UI_STRINGS.formSubjectPlaceholder)}
                     aria-invalid={Boolean(errors.subject)}
                     aria-describedby={errors.subject ? 'contact-subject-error' : undefined}
-                    className="mt-2 w-full rounded-lg border border-slate-800 bg-[#060913] px-3.5 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 focus:border-blue-500 focus:outline-none"
+                    className="mt-2 min-h-[44px] w-full rounded-lg border border-slate-800 bg-[#060913] px-3.5 py-2.5 text-sm text-slate-100 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none"
                   />
                   {errors.subject && (
                     <p id="contact-subject-error" className="mt-1.5 text-xs text-rose-400">
@@ -364,7 +387,7 @@ export function ContactSection() {
                     placeholder={t(UI_STRINGS.formMessagePlaceholder)}
                     aria-invalid={Boolean(errors.message)}
                     aria-describedby={errors.message ? 'contact-message-error' : undefined}
-                    className="mt-2 w-full resize-y rounded-lg border border-slate-800 bg-[#060913] px-3.5 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 focus:border-blue-500 focus:outline-none"
+                    className="mt-2 w-full resize-y rounded-lg border border-slate-800 bg-[#060913] px-3.5 py-2.5 text-sm text-slate-100 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none"
                   />
                   {errors.message && (
                     <p id="contact-message-error" className="mt-1.5 text-xs text-rose-400">
@@ -380,7 +403,7 @@ export function ContactSection() {
                       <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" aria-hidden="true" />
                       <div>
                         <p className="font-semibold">{t(UI_STRINGS.formSuccessTitle)}</p>
-                        <p className="mt-1 text-emerald-200/85">{t(UI_STRINGS.formSuccessBody)}</p>
+                        <p className="mt-1 text-emerald-200/90">{t(UI_STRINGS.formSuccessBody)}</p>
                       </div>
                     </div>
                   )}
@@ -390,7 +413,7 @@ export function ContactSection() {
                       <Info className="mt-0.5 h-4 w-4 shrink-0 text-blue-400" aria-hidden="true" />
                       <div>
                         <p className="font-semibold">{t(UI_STRINGS.formUnconfiguredTitle)}</p>
-                        <p className="mt-1 text-blue-100/85">{t(UI_STRINGS.formUnconfiguredBody)}</p>
+                        <p className="mt-1 text-blue-100/90">{t(UI_STRINGS.formUnconfiguredBody)}</p>
                       </div>
                     </div>
                   )}
@@ -400,7 +423,7 @@ export function ContactSection() {
                       <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-rose-400" aria-hidden="true" />
                       <div>
                         <p className="font-semibold">{t(UI_STRINGS.formErrorTitle)}</p>
-                        <p className="mt-1 text-rose-200/85">{t(UI_STRINGS.formErrorBody)}</p>
+                        <p className="mt-1 text-rose-200/90">{t(UI_STRINGS.formErrorBody)}</p>
                       </div>
                     </div>
                   )}
@@ -431,7 +454,7 @@ export function ContactSection() {
               </form>
             </div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

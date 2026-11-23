@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { MotionConfig } from 'motion/react';
+import { domAnimation, LazyMotion, MotionConfig } from 'motion/react';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
@@ -75,9 +75,11 @@ function PortfolioShell() {
 export default function App() {
   return (
     <MotionConfig reducedMotion="user">
-      <LanguageProvider>
-        <PortfolioShell />
-      </LanguageProvider>
+      <LazyMotion features={domAnimation}>
+        <LanguageProvider>
+          <PortfolioShell />
+        </LanguageProvider>
+      </LazyMotion>
     </MotionConfig>
   );
 }

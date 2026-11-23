@@ -1,5 +1,5 @@
 import { BrainCircuit, Compass, Cpu, Globe, Languages } from 'lucide-react';
-import { motion } from 'motion/react';
+import { m } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
 import {
   GOALS_CONTENT,
@@ -30,7 +30,7 @@ export function InterestsGoalsSection() {
         className="border-b border-slate-800/70 bg-[#0A0F1E] py-16 sm:py-24"
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
@@ -95,7 +95,7 @@ export function InterestsGoalsSection() {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -105,7 +105,7 @@ export function InterestsGoalsSection() {
         className="border-b border-slate-800/70 bg-[#060913] py-16 sm:py-24"
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
@@ -148,7 +148,7 @@ export function InterestsGoalsSection() {
                 </article>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
     </>

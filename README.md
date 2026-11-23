@@ -6,17 +6,18 @@ A complete, bilingual (**English & বাংলা**) personal portfolio website
 
 - **Full Bilingual Experience (`EN / বাংলা`)**: Every heading, navigation item, project card, modal, form validation message, and footer link translates dynamically and persists in `localStorage`.
 - **9 Complete Sections**: Home, About Me, Education, Skills & Learning, Projects, Achievements, Interests & Languages, Goals & Future Vision, and Contact.
-- **Interactive Projects Browser**: Filter projects by status or technology (`All`, `Completed`, `In Progress`, `Python`, `HTML`) and inspect each project in a keyboard-accessible modal.
+- **Interactive Projects Browser**: Filter projects by status or technology (`All`, `Completed`, `In Progress`, `Python`, `HTML`), preview visual placeholders or real screenshots, read learning outcomes, and inspect each project in a focus-trapped accessible modal.
 - **Honest & Authentic Framing**: Beginner skills, unlinked projects, speaking/listening-only language skills, and future goals are labeled transparently without inflated claims or fake percentages.
-- **Privacy-First Validated Contact Form**: Keeps private email addresses out of public markup, validates all inputs cleanly, and supports **Formspree** or **EmailJS** via environment variables.
-- **Accessibility & Motion**: Semantic HTML, skip-to-content link, visible focus rings, WCAG AA dark-navy contrast, and `prefers-reduced-motion` support.
+- **Privacy-First Validated Contact Form**: Keeps private email addresses out of public markup, shows live configuration status, validates all inputs cleanly, and supports **Formspree** or **EmailJS** via environment variables.
+- **Accessibility & Performance**: Semantic HTML, skip-to-content link, modal/drawer focus trapping, visible focus rings, WCAG AA contrast, `prefers-reduced-motion` support, lazy-loaded media, and zero unused backend dependencies.
 
 ## Project Structure
 
 - `index.html` — SEO metadata, OpenGraph/Twitter tags, Schema.org `Person` JSON-LD, and Google Fonts (`Plus Jakarta Sans`, `DM Sans`, `JetBrains Mono`, `Noto Sans Bengali`, `Hind Siliguri`).
 - `src/types/portfolio.ts` — TypeScript definitions for bilingual content and project filters.
-- `src/data/portfolioData.ts` — Central, easy-to-edit file holding all English/Bangla copy, profile photo path, projects, education, skills, achievements, learning goals, and social links.
+- `src/data/portfolioData.ts` — Central, easy-to-edit file holding all English/Bangla copy, hero highlights, profile photo path, projects, education, skills, achievements, learning goals, and social links.
 - `src/context/LanguageContext.tsx` — Manages `en` / `bn` state, `<html lang>` synchronization, and `localStorage` persistence.
+- `src/hooks/useDialogA11y.ts` — Focus trapping, `Escape` handling, body scroll locking, and focus restoration for dialogs and drawers.
 - `src/components/` — Modular UI sections (`Navbar`, `HeroSection`, `AboutSection`, `EducationSection`, `SkillsSection`, `ProjectsSection`, `ProjectModal`, `AchievementsSection`, `InterestsGoalsSection`, `ContactSection`, `Footer`).
 
 ## Running Locally
@@ -29,8 +30,9 @@ A complete, bilingual (**English & বাংলা**) personal portfolio website
    ```bash
    npm run dev
    ```
-3. Build for production:
+3. Run TypeScript type-checking and build for production:
    ```bash
+   npm run lint
    npm run build
    ```
 
